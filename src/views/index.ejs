@@ -72,7 +72,6 @@
         </div>
         <!-- /.container -->
     </nav>
-
     <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
@@ -93,9 +92,9 @@
                 %>
                 <div class="item <%=active%>">
                     <!-- Set the first background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+                    <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide <%=list[i]%>');"></div>S
                     <div class="carousel-caption">
-                        <h2>Caption <%=list[i]%></h2>
+                        <h2>Caption <%=i%></h2>
                     </div>
                 </div>
                 <% } %>

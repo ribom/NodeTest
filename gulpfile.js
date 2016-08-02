@@ -4,6 +4,10 @@ var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 
 var jsFiles = ['*.js', 'src/**/*.js'];
+var ejsFiles = ['*.ejs'];
+var filesToWatch = jsFiles.concat(ejsFiles);
+
+console.log(filesToWatch);
 
 gulp.task('style', function () {
     return gulp.src(jsFiles)
@@ -12,6 +16,7 @@ gulp.task('style', function () {
             verbose: true
         }));
 });
+
 
 gulp.task('inject', function () {
 
@@ -43,7 +48,7 @@ gulp.task('serve', ['style', 'inject'], function () {
         env: {
             'PORT': 3000,
         },
-        watch: jsFiles
+        watch: filesToWatch
     };
 
     return nodemon(options)
