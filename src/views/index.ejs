@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="/css/half-slider.css">
 
+    <link rel="stylesheet" href="/css/site.css">
+
     <!-- endinject -->
 
     <!-- bower:js -->
@@ -115,8 +117,27 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Half Slider by Start Bootstrap</h1>
-                <p>The background images for the slider are set directly in the HTML using inline CSS. The rest of the styles for this template are contained within the <code>half-slider.css</code>file.</p>
+                <h1>Sign up for more sliders!</h1>
+                <form action="/signup" method="post">
+                    <div class="col-lg-12 padding-10">
+                        <div class="col-lg-2 t-r">Name:</div>
+                        <div class="col-lg-5">
+                            <input name="userName" id="userName" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 padding-10">
+                        <div class="col-lg-2 t-r">Password:</div>
+                        <div class="col-lg-5">
+                            <input name="password" id="password" type="password" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 padding-10">
+                        <div class="col-lg-2 t-r"></div>
+                        <div class="col-lg-5">
+                            <button id="submit" type="submit">Sign up!</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
