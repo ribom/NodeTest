@@ -1,5 +1,5 @@
 var bodyParser = require('body-parser');
-var db = require('./../db/dbQueries');
+var db = require('./../db/userQueries');
 
 module.exports = function (app) {
     app.use(bodyParser.urlencoded({
@@ -9,8 +9,17 @@ module.exports = function (app) {
     app.post('/signup', function (req, res) {
         var userName = req.body.userName;
         var password = req.body.password;
-        console.log('connecting to db');
-        db.addUser(userName, password);  
+        db.addUser(userName, password);
         res.send('You added the user "' + req.body.userName + '" to the database');
+    });
+
+    app.get('/user/:userName', function (req, res) {
+        var userName = req.params.userName;
+
+
+        var user = db.getUser(userName, function (userObj) {
+            res.send('You found the user: ' + userObj.password);
+        });
+
     });
 };
