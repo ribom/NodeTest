@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient,
 var url = 'mongodb://localhost:27017/MyTest';
 
 
-var addUser = function (userName, password) {
+var addUser = function (userName, password, cb) {
     MongoClient.connect(url, function (err, db) {
         assert.equal(null, err);
 
@@ -15,16 +15,18 @@ var addUser = function (userName, password) {
             if (user !== null) {
                 console.log('Existing user found');
                 db.close();
+                cb(null);
             } else {
                 collection.insertOne({
                     userName: userName,
                     password: password
                 }, function (err, res) {
+                    console.log(res);
                     db.close();
+                    cb(res);
                 });
             }
         });
-
     });
 };
 
@@ -39,7 +41,7 @@ var getUser = function (userName, cb) {
             if (user !== null) {
                 db.close();
                 cb(user);
-            } 
+            }
             return null;
         });
     });

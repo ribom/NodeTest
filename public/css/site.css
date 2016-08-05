@@ -5,3 +5,7 @@
 .padding-10 {
     padding: 10px;
 }
+
+.carousel-inner {
+    top: -51px;
+}

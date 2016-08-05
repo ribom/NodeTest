@@ -3,17 +3,20 @@ var passport = require('passport');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var authRouter = require('./src/routes/authRoutes');
 
 var app = express();
 
 var port = process.env.PORT || 5000;
+
+require('./src/config/passport')(app);
 
 app.use(express.static('public'));
 app.use(express.static('src/views'));
 
 //app.use(cookieParser); not needed for session anymore?
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 app.use(bodyParser.json());
 app.use(session({
@@ -21,8 +24,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
+
+app.use('/authenticate', authRouter);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
@@ -33,12 +37,8 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/test', function (req, res) {
-    res.send('Heeey test');
-});
-
 app.listen(port, function (err) {
     console.log('Running server on port ' + port);
 });
 
-require('./src/signup/signup')(app);
+require('./src/auth/signup')(app);

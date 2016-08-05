@@ -1,20 +1,27 @@
 var express = require('express');
 var authRouter = express.Router();
-var mongodb = require('mongodb').MongoClient;
+var login = require('./../auth/login');
+var passport = require('passport');
 
-var router = function() {
-    authRouter.route('/signUp')
-    .post(function (req, res){
-        console.log(req.body);
-        req.login(req.body, function(){
-           res.redirect('/auth/profile'); 
-        });
+authRouter.route('/signUp').post(function (req, res) {
+    console.log(req.body);
+    req.login(req.body, function () {
+        res.redirect('/auth/profile');
     });
-    authRouter.route('/profile)')
-    .get(function(req, res){
-        res.json(req.user); 
-    });
-    return authRouter;
-};
+});
+authRouter.route('/profile').get(function (req, res) {
+    res.json(req.user);
+});
 
-module.exports = router;
+authRouter.route('/login')
+    .get(function (req, res) {
+        res.render('login/login');
+    })
+    .post(passport.authenticate('local', {
+        failureRedirect: '/'
+    }), function (req, res) {
+        res.render('signup/signup');
+    });
+
+
+module.exports = authRouter;
