@@ -15,10 +15,11 @@ authRouter.route('/profile').get(function (req, res) {
 
 authRouter.route('/login')
     .get(function (req, res) {
+
         res.render('login/login');
     })
     .post(passport.authenticate('local', {
-        failureRedirect: '/'
+        failureRedirect: '/authenticate/login'
     }), function (req, res) {
         res.render('signup/signup');
     });

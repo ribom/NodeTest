@@ -38,11 +38,8 @@ var getUser = function (userName, cb) {
         collection.findOne({
             userName: userName
         }, {}, function (err, user) {
-            if (user !== null) {
-                db.close();
-                cb(user);
-            }
-            return null;
+            db.close();
+            cb(user);
         });
     });
 };

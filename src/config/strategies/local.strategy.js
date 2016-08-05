@@ -10,11 +10,15 @@ module.exports = function () {
         function (username, password, done) {
 
             db.getUser(username, function (user) {
-                if (user.password === password) {
+                if (user === null) {
+                    done(null, false, {
+                        message: 'Invalid username'
+                    });
+                } else if (user.password === password) {
                     done(null, user);
                 } else {
                     done(null, false, {
-                        message: 'Invalid password'
+                        message: 'Invalid username or password'
                     });
                 }
             });

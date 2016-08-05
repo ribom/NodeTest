@@ -9,7 +9,6 @@ var app = express();
 
 var port = process.env.PORT || 5000;
 
-require('./src/config/passport')(app);
 
 app.use(express.static('public'));
 app.use(express.static('src/views'));
@@ -25,20 +24,34 @@ app.use(session({
     saveUninitialized: true
 }));
 
+require('./src/config/passport')(app);
 
 app.use('/authenticate', authRouter);
+
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
+
     res.render('index', {
-        list: ['one', 'two', 'three']
+        list: ['o', 'dua']
     });
+});
+
+app.get('/secret', function (req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    console.log(req.user);
+
+    res.send(req.user);
+
 });
 
 app.listen(port, function (err) {
     console.log('Running server on port ' + port);
 });
+
+
 
 require('./src/auth/signup')(app);
