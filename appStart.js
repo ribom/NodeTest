@@ -26,6 +26,11 @@ app.use(session({
 
 require('./src/config/passport')(app);
 
+app.use(function (req, res, next) {
+    res.locals.loggedIn = req.user;
+    next();
+});
+
 app.use('/authenticate', authRouter);
 
 

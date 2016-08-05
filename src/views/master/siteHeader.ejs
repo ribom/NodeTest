@@ -69,7 +69,9 @@
                         <a href="/signup">Signup</a>
                     </li>
                 </ul>
-
+                <% if(loggedIn) { %>
+                    <div class="col-lg-3 pull-right log-out-link"><a href="/authenticate/logout">Log out</a></div>
+                    <% } %>
             </div>
             <!-- /.navbar-collapse -->
         </div>

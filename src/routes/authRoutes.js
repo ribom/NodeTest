@@ -24,5 +24,8 @@ authRouter.route('/login')
         res.render('signup/signup');
     });
 
-
+authRouter.route('/logout').get(function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 module.exports = authRouter;

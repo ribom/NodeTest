@@ -5,11 +5,11 @@ module.exports = function (app) {
     app.use(passport.session());
 
     passport.serializeUser(function (user, done) {
-        done(null, user);
+        done(null, user._id);
     });
 
-    passport.deserializeUser(function (user, done) {
-        done(null, user);
+    passport.deserializeUser(function (userId, done) {
+        done(null, userId);
     });
 
     require('./strategies/local.strategy')();
