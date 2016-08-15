@@ -12,8 +12,8 @@
     <title>Half Slider - Start Bootstrap Template</title>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="..//lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="..//lib/font-awesome/css/font-awesome.min.css" />
     <!-- endbower -->
 
     <!-- inject:css -->
@@ -25,8 +25,8 @@
     <!-- endinject -->
 
     <!-- bower:js -->
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="..//lib/jquery/dist/jquery.min.js"></script>
+    <script src="..//lib/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
 
     <!-- inject:js -->
@@ -63,15 +63,16 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="/authenticate/login">Log in</a>
-                    </li>
-                    <li>
                         <a href="/signup">Signup</a>
                     </li>
                 </ul>
-                <% if(loggedIn) { %>
-                    <div class="col-lg-3 pull-right log-out-link"><a href="/authenticate/logout">Log out</a></div>
-                    <% } %>
+                <div class="col-lg-3 pull-right log-out-link">
+                    <% if(loggedIn) { %>
+                        <a href="/authenticate/logout">Log out</a>
+                        <% } else { %>
+                            <a href="/authenticate/login">Log in</a>
+                            <% } %>
+                </div>
             </div>
             <!-- /.navbar-collapse -->
         </div>

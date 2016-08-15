@@ -34,6 +34,11 @@
             "main": [
                 "dist/jquery.min.js"
             ]
+        },
+        "angular": {
+            "main": [
+                "./angular.min.js"
+            ]
         }
     }
 }

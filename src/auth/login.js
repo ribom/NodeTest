@@ -10,4 +10,4 @@ var login = function (username, password, cb) {
 
 module.exports = {
     login: login
-}
+};

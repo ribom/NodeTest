@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var authRouter = require('./src/routes/authRoutes');
+var memberRouter = require('./src/routes/memberRoutes');
 
 var app = express();
 
@@ -27,11 +28,20 @@ app.use(session({
 require('./src/config/passport')(app);
 
 app.use(function (req, res, next) {
-    res.locals.loggedIn = req.user;
-    next();
+    if (req.path.indexOf(memberRouter.path) !== -1 && !req.isAuthenticated()) {
+        req.session.redirectTo = req.path;
+        res.redirect('/authenticate/login');
+    }
+    res.locals.loggedIn = false;
+    if (req.isAuthenticated()) {
+        res.locals.loggedIn = req.user;
+    }
+    return next();
 });
 
 app.use('/authenticate', authRouter);
+
+app.use(memberRouter.path, memberRouter.router);
 
 
 app.set('views', './src/views');
@@ -44,14 +54,6 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/secret', function (req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    console.log(req.user);
-
-    res.send(req.user);
-
-});
 
 app.listen(port, function (err) {
     console.log('Running server on port ' + port);

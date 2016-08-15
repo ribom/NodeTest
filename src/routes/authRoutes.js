@@ -21,8 +21,10 @@ authRouter.route('/login')
     .post(passport.authenticate('local', {
         failureRedirect: '/authenticate/login'
     }), function (req, res) {
-        res.render('signup/signup');
-    });
+    var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+    delete req.session.redirectTo;
+    res.redirect(redirectTo);
+});
 
 authRouter.route('/logout').get(function (req, res) {
     req.logout();
