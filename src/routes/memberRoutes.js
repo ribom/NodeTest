@@ -1,6 +1,6 @@
 var express = require('express');
 var memberRouter = express.Router();
-var path = '/member';
+var memberPath = '/member';
 
 memberRouter.route('/').get(function (req, res) {
     res.send('You have entered a secure path');
@@ -9,5 +9,5 @@ memberRouter.route('/').get(function (req, res) {
 
 module.exports = {
     router: memberRouter,
-    path: path
+    path: memberPath
 };

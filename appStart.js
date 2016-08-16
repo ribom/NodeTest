@@ -5,12 +5,13 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var authRouter = require('./src/routes/authRoutes');
 var memberRouter = require('./src/routes/memberRoutes');
+var searchRouter = require('./src/routes/searchRoutes');
 
 var app = express();
 
 var port = process.env.PORT || 5000;
 
-
+app.use(express.static('front'));
 app.use(express.static('public'));
 app.use(express.static('src/views'));
 
@@ -41,7 +42,10 @@ app.use(function (req, res, next) {
 
 app.use('/authenticate', authRouter);
 
+console.log(searchRouter.path);
+
 app.use(memberRouter.path, memberRouter.router);
+app.use(searchRouter.path, searchRouter.router);
 
 
 app.set('views', './src/views');
