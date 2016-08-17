@@ -1,14 +1,12 @@
 <% include master/siteHeader %>
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
+    <header id="myCarousel" class="carousel slide" ng-controller="mostPopCtrl">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li ng-repeat="(key, movie) in movieArray" data-target="#myCarousel" data-slide-to="{{key}}" class="{{key === 0 ? 'active' : ''}}"></li>
         </ol>
         <!-- Wrapper for Slides -->
-        <div class="carousel-inner" ng-app="search" ng-controller="mostPopCtrl">
+        <div class="carousel-inner">
             <div ng-repeat="(key, movie) in movieArray" class="item {{key === 0 ? 'active' : ''}}">
                 <div class="fill" style="background-image:url('{{baseImgUrl + movie.backdrop_path}}');"> </div>
                 <div class="carousel-caption">
@@ -39,5 +37,6 @@
         $('.carousel').carousel({
             interval: 5000 //changes the speed
         })
+
     </script>
     <% include master/siteFooter %>

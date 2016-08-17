@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="/css/half-slider.css">
     <link rel="stylesheet" href="/css/site.css">
     <!-- endinject -->
-    <script src="..//lib/angular/angular.min.js"></script>
+    <script src="..//lib/angular/angular.js"></script>
     <!-- bower:js -->
     <script src="..//lib/jquery/dist/jquery.min.js"></script>
     <script src="..//lib/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
+    <script src="/js/site.js"></script>
     <!-- endinject -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,25 +34,29 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="/">Gman's partyhouse!</a> </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li> <a href="/search">Search Movies</a> </li>
-                    <li> <a href="/signup">Signup</a> </li>
-                </ul>
-                <div class="col-lg-3 pull-right log-out-link">
-                    <% if(loggedIn) { %> <a href="/authenticate/logout">Log out</a>
-                        <% } else { %> <a href="/authenticate/login">Log in</a>
-                            <% } %>
+    <div ng-app="movieBase">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div ng-controller="headerCtrl" class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="/">Gman's partyhouse!</a> </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <input type="text" ng-model="term" placeholder="Search..." class="site-search-input"> </li>
+                        <li> <a ng-click="searchToggle()" class="site-search">Search</a></li>
+
+                    </ul>
+                    <div class="col-lg-3 pull-right log-out-link">
+                        <% if(loggedIn) { %> <a href="/authenticate/logout">Log out</a>
+                            <% } else { %> <a href="/authenticate/login">Log in</a>
+                                <a href="/signup">Signup</a>
+                                <% } %>
+                    </div>
                 </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    <div class="col-lg-12" style="height: 51px;"></div>
+            <!-- /.container -->
+        </nav>
+        <div class="col-lg-12" style="height: 51px;"></div>
