@@ -1,8 +1,8 @@
-var apiKey = 'dc7e3aace683c4dcbc23548159ec3cb3';
+angular.module('movieBase').controller('mostPopCtrl', ['$scope', '$http', function($scope, $http) {
+    var apiKey = 'dc7e3aace683c4dcbc23548159ec3cb3';
 var discoverUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=';
 var imgUrl = 'https://image.tmdb.org/t/p/w1280/';
-var app = angular.module('movieBase');
-app.controller('mostPopCtrl', function ($scope, $http) {
+    
     $scope.movieArray = [];
     $scope.baseImgUrl = imgUrl;
     console.log("yes");
@@ -21,4 +21,4 @@ app.controller('mostPopCtrl', function ($scope, $http) {
         $scope.word = $scope.term;
     };
     getMovies();
-});
+}]);

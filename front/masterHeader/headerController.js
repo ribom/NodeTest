@@ -1,15 +1,9 @@
-console.log("what");
 
-var app = angular.module('movieBase', []);
-app.controller('headerCtrl', function ($scope) {
-    $scope.movieArray = [];
+angular.module('movieBase').controller('headerCtrl', ['$scope', '$window', function($scope, $window) {
+    $scope.term = "";
     $scope.searchToggle = function () {
-        if ($scope.term == "") {
-            console.log("empty");
-
-        } else {
-            console.log("term:" + $scope.term);
-
+        if ($scope.term != "") {
+            $window.location.href = '/search/?q=' + encodeURIComponent($scope.term);
         }
     };
-});
+}]);
