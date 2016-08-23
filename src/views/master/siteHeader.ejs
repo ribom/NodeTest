@@ -32,8 +32,9 @@
     <![endif]-->
 </head>
 
-<body ng-app="movieBase">
-    <!-- Navigation -->
+<body>
+    <div class="ng-site" ng-app="movieBase">
+        <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div ng-controller="headerCtrl" class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <input type="text" ng-model="term" placeholder="Search..." class="site-search-input"> </li>
+                            <input type="text" ng-model="term" ng-keypress="keyFunc($event)" placeholder="Search..." class="site-search-input"> </li>
                         <li> <a ng-click="searchToggle()" class="site-search">Search</a></li>
 
                     </ul>

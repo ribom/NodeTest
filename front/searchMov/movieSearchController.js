@@ -1,12 +1,16 @@
-angular.module('movieBase').controller('mostPopCtrl', ['$scope', '$http', function($scope, $http) {
-    var apiKey = 'dc7e3aace683c4dcbc23548159ec3cb3';
-var discoverUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=';
-var imgUrl = 'https://image.tmdb.org/t/p/w1280/';
-    
+angular.module('movieBase').controller('movieSearchCtrl', ['$scope', '$http', function ($scope, $http) {
+    var apiKey = 'api_key=dc7e3aace683c4dcbc23548159ec3cb3';
+    var discoverUrl = 'https://api.themoviedb.org/3/discover/movie?';
+    var searchUrl = 'https://api.themoviedb.org/3/search/movie?';
+    var imgUrl = 'https://image.tmdb.org/t/p/w';
+
     $scope.movieArray = [];
+    $scope.smallSize = '300';
+    $scope.bigSize = '1280';
     $scope.baseImgUrl = imgUrl;
-    console.log("yes");
-    var getMovies = function () {
+    $scope.searchQuery = getParameterByName('q');
+
+    $scope.getMovies = function () {
         $http({
             method: 'GET',
             url: discoverUrl + apiKey
@@ -20,5 +24,22 @@ var imgUrl = 'https://image.tmdb.org/t/p/w1280/';
         });
         $scope.word = $scope.term;
     };
-    getMovies();
+
+    $scope.search = function () {
+        if ($scope.searchQuery !== null || $scope.searchQuery !== '') {
+            $http({
+                method: 'GET',
+                url: searchUrl + 'query=' + encodeURIComponent($scope.searchQuery) + '&' + apiKey
+            }).
+            success(function (data, status, headers, config) {
+                $scope.movieArray = data.results;
+                console.log($scope.movieArray);
+            }).
+            error(function (data, status, headers, config) {
+                console.log('error: ' + status);
+            });
+        }
+    };
+
+    $scope.getMovies();
 }]);

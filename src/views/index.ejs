@@ -1,6 +1,6 @@
 <% include master/siteHeader %>
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide" ng-controller="mostPopCtrl">
+    <header id="myCarousel" class="carousel slide" ng-controller="movieSearchCtrl">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li ng-repeat="(key, movie) in movieArray" data-target="#myCarousel" data-slide-to="{{key}}" class="{{key === 0 ? 'active' : ''}}"></li>
@@ -8,12 +8,11 @@
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
             <div ng-repeat="(key, movie) in movieArray" class="item {{key === 0 ? 'active' : ''}}">
-                <div class="fill" style="background-image:url('{{baseImgUrl + movie.backdrop_path}}');"> </div>
+                <div class="fill" style="background-image:url('{{baseImgUrl + bigSize + (movie.backdrop_path !== null ? movie.backdrop_path : movie.poster_path)}}');"> </div>
                 <div class="carousel-caption">
                     <h2>{{movie.title}}</h2> </div>
             </div>
         </div>
-        <script src="/searchMov/movieSearchController.js"></script>
         <!-- Controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <span class="icon-prev"></span> </a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next"> <span class="icon-next"></span> </a>

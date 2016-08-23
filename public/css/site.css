@@ -1,3 +1,14 @@
+img {
+    width: 100%;
+}
+.tb-p {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.rl-p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 .t-r {
     text-align: right;
 }

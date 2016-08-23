@@ -1,15 +1,20 @@
 <% include ../master/siteHeader %>
 
-    <div class="container">
+    <div ng-controller="movieSearchCtrl" class="container">
         <div class="row">
             <div class="col-lg-12 padding-10">
-                <div ng-controller="searchCtrl">
-                    <input ng-model="term" type="text">
-                    <button type="button" ng-click="search()">Search</button>
+                <div class="row" ng-repeat="(key, movie) in movieArray">
 
-                    <div ng-repeat="(key, movie) in movieArray">
+                    <div class="list-img col-lg-2 col-xs-4 tb-p">
+                        <img src="{{baseImgUrl + smallSize + movie.poster_path}}">
+                    </div>
+                    <div class="col-lg-10 col-xs-8">
                         <div class="col-lg-12">
-                            <img src="{{baseImgUrl + movie.poster_path}}">
+                            <h2>{{movie.title}}</h2>
+                        </div>
+                        <div class="col-lg-12">
+                            <p>{{movie.overview}}
+                                <p>
                         </div>
                     </div>
                 </div>
