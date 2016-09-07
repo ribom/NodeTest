@@ -1,4 +1,4 @@
-angular.module('movieBase').controller('movieSearchCtrl', ['$scope', 'movieService', '$http', function ($scope, movieService, $http) {
+angular.module('movieBase').controller('movieSearchCtrl', ['$scope', 'movieService', '$http', function($scope, movieService, $http) {
 
     $scope.baseImgUrl = movieService.imgUrl;
     $scope.searchQuery = getParameterByName('q');
@@ -7,8 +7,13 @@ angular.module('movieBase').controller('movieSearchCtrl', ['$scope', 'movieServi
     $scope.smallSize = '300';
     $scope.bigSize = '1280';
 
-    movieService.getMovies(function (movieArray) {
-        $scope.movieArray = movieArray;
-    });
-
+    if ($scope.searchQuery) {
+        movieService.search($scope.searchQuery, function(movieArray) {
+            $scope.movieArray = movieArray;
+        });
+    } else {
+        movieService.getMovies(function(movieArray) {
+            $scope.movieArray = movieArray;
+        });
+    }
 }]);
