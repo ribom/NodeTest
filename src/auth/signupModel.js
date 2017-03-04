@@ -6,8 +6,8 @@ var modelFailure = {
     resultText: 'Could not add user',
 };
 
-createModel = function(signupResult) {
-    if(signupResult == null || signupResult.result.ok !== 1){
+createModel = function (signupResult) {
+    if (signupResult === null || signupResult.result.ok !== 1) {
         return modelFailure;
     } else {
         return modelSuccess;

@@ -1,3 +1,14 @@
+img {
+    width: 100%;
+}
+.tb-p {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.rl-p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 .t-r {
     text-align: right;
 }
@@ -17,4 +28,32 @@
 .log-out-link a:hover {
     color: #fff;
     text-decoration: none;
+}
+a {
+    cursor: pointer;
+}
+.site-search-input {
+    display: none;
+    margin-top: 12px;
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 7px;
+    background-color: #ddd;
+    border: none;
+    outline: none;
+}
+.navbar-inverse .navbar-nav>li>.site-search.button {
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    color: black;
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+.navbar-inverse .navbar-nav>li>.site-search.button:hover {
+    background: #ccc;
 }

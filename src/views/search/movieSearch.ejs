@@ -1,0 +1,24 @@
+<% include ../master/siteHeader %>
+
+    <div ng-controller="movieSearchCtrl" class="container">
+        <div class="row">
+            <div class="col-lg-12 padding-10">
+                <div class="row" ng-repeat="(key, movie) in movieArray">
+
+                    <div class="list-img col-lg-2 col-xs-4 tb-p">
+                        <img src="{{baseImgUrl + smallSize + movie.poster_path}}">
+                    </div>
+                    <div class="col-lg-10 col-xs-8">
+                        <div class="col-lg-12">
+                            <h2>{{movie.title}}</h2>
+                        </div>
+                        <div class="col-lg-12">
+                            <p>{{movie.overview}}
+                                <p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../master/siteFooter %>
